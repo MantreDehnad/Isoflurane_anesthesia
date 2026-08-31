@@ -1,0 +1,91 @@
+Single Animal Sleep Analysis Help
+created by Roshan Nanu, October 2014
+
+This Program is used for the analysis of xlsx outputs from the sleep 
+Autoscore program.
+
+This program is designed to import 24hrs worth of output from the Autoscore
+program and create an xlsx file with 4 sheets:
+
+	Sheet 1: Combined Output
+		This is a compile version of all of the outputs into a single 
+		24hr data file, with the epoch numbers changed accordingly, the
+		power values for all artifacts are removed and the state values
+		are revert to the parent state:
+		4 -> 1, 5 -> 2, 6 -> 3
+		Pure artifacts with no base state (7) are changed to 4.
+		
+	Sheet 2: Episode Analysis
+		This sheet divides the data into waking, REM and NREM bouts based
+		on the episode start criteria you select. Each episode is laid out
+		column-wise with the state at the top, followed by the episode 
+		length, the number of incursions (epochs of another state within
+		the episode), and the Delta power of each epoch in the episode.
+		
+	Sheet 3: Adjusted State
+		This sheet contains the adjusted state of each epoch (the state of
+		the episode that the epoch is in) as well as assigns each epoch to 
+		a time bin. You can set the width of the time bins as well as 
+		whether to delay the start of the binning by several epochs. This
+		also contains the episode durations for the episode that each epoch
+		is in. 
+		
+	Sheet 4: Normalized SWA 
+		This sheet is different for Baseline data and Sleep Deprivation
+		data. For baseline data it contains the gamma power of each epoch
+		and computes the average 24hr gamma power as well as the delta power
+		normalized to this mean gamma power. For sleep deprivation data
+		this 24hr average baseline gamma must be provided as it is used to 
+		compute the normalized delta power. Additionally, for both types of
+		data, several tables are created containing statistics for each
+		time bin. 
+
+____________________________________________________________________________
+
+To properly use this program you must input several pieces of information
+using the drop-down menus on the screen. You must specify:
+	- The number of output files you wish to combine into a 24hr file.
+	- The epoch duration used when scoring the files. 
+	- The number of seconds within is a state required to start an episode
+	- The width of time bin (in hours)
+	- The delay before binning starts
+	- The type of data (Baseline or Sleep Deprivation)
+	- Whether or not your Autoscore files contain EMG data. 
+			This is because newer autoscore outputs contain an EMG data
+			column, while older ones do not. 
+	
+Additionally, if the data is SD data, you will need to provide:
+	- The average baseline gamma power
+		& 
+	- (optional) an xlsx file specifying which epochs had the treadmill on
+		or off. This file should be 2 columns with column 1 being Epoch #
+		or Time and the column 2 being a list of zeros and ones. 1 for 
+		TM on and 0 for TM off. If this is not provided the program will 
+		automatically generate this information as 4 hrs on and 2 hrs off.
+		If there is a delay before the treadmill starts, simply leave
+		those epochs blank in the 2nd column. Similarly, if epochs at the 
+		end should be excluded from analysis, simply leave those blank
+		as well.
+		
+Finally, you will need to click the Choose Files button in order to import
+your autoscore files. You can select any number of files at once as long as
+they are in the correct order in the file chooser box. 
+
+Once imported you can select a file from the listbox if you want to change
+it or you can click Choose Files again to re-select all files. 
+
+Once all of this is done, the Create Analysis File button will be enabled.
+Clicking this will generate all of the output sheets and save them all to
+a file that it will ask you to choose. It will also generate several plots
+of the data:
+	- A Bar graph showing the mean SWA for each state
+	- A plot showing the SWA for each epoch and a hypnogram
+	- A cumulative histogram of episode durations
+
+Once this is done, you may select the 'Fit SWA Decay' button which will
+create a average NREM episode using episodes longer than 5 min and then 
+allow you to select a fragment of the average episode and fit it to an
+exponetial decay fit. The fit results will be saved as a new sheet to
+the output file. 
+
+Afterwards, you can re-select files and run it again for another animal.

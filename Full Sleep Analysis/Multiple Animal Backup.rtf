@@ -1,0 +1,2668 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red34\green139\blue34;\red160\green32\blue240;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs20 \cf2 function\cf0  varargout = Multiple_Animal_Analysis(varargin)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % GUIDETEMPLATE0 MATLAB code for guidetemplate0.fig
+\fs24 \cf0 \
+
+\fs20 \cf3 %      GUIDETEMPLATE0, by itself, creates a new GUIDETEMPLATE0 or raises the existing
+\fs24 \cf0 \
+
+\fs20 \cf3 %      singleton*.
+\fs24 \cf0 \
+
+\fs20 \cf3 %
+\fs24 \cf0 \
+
+\fs20 \cf3 %      H = GUIDETEMPLATE0 returns the handle to a new GUIDETEMPLATE0 or the handle to
+\fs24 \cf0 \
+
+\fs20 \cf3 %      the existing singleton*.
+\fs24 \cf0 \
+
+\fs20 \cf3 %
+\fs24 \cf0 \
+
+\fs20 \cf3 %      GUIDETEMPLATE0('CALLBACK',hObject,eventData,handles,...) calls the local
+\fs24 \cf0 \
+
+\fs20 \cf3 %      function named CALLBACK in GUIDETEMPLATE0.M with the given input arguments.
+\fs24 \cf0 \
+
+\fs20 \cf3 %
+\fs24 \cf0 \
+
+\fs20 \cf3 %      GUIDETEMPLATE0('Property','Value',...) creates a new GUIDETEMPLATE0 or raises the
+\fs24 \cf0 \
+
+\fs20 \cf3 %      existing singleton*.  Starting from the left, property value pairs are
+\fs24 \cf0 \
+
+\fs20 \cf3 %      applied to the GUI before guidetemplate0_OpeningFcn gets called.  An
+\fs24 \cf0 \
+
+\fs20 \cf3 %      unrecognized property name or invalid value makes property application
+\fs24 \cf0 \
+
+\fs20 \cf3 %      stop.  All inputs are passed to guidetemplate0_OpeningFcn via varargin.
+\fs24 \cf0 \
+
+\fs20 \cf3 %
+\fs24 \cf0 \
+
+\fs20 \cf3 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
+\fs24 \cf0 \
+
+\fs20 \cf3 %      instance to run (singleton)".
+\fs24 \cf0 \
+
+\fs20 \cf3 %
+\fs24 \cf0 \
+
+\fs20 \cf3 % See also: GUIDE, GUIDATA, GUIHANDLES
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Copyright 2002-2006 The MathWorks, Inc.
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Edit the above text to modify the response to help guidetemplate0
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Last Modified by GUIDE v2.5 03-Nov-2014 11:29:21
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Begin initialization code - DO NOT EDIT
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 gui_Singleton = 1;
+\fs24 \
+
+\fs20 gui_State = struct(\cf4 'gui_Name'\cf0 ,       mfilename, \cf2 ...
+\fs24 \cf0 \
+
+\fs20                    \cf4 'gui_Singleton'\cf0 ,  gui_Singleton, \cf2 ...
+\fs24 \cf0 \
+
+\fs20                    \cf4 'gui_OpeningFcn'\cf0 , @guidetemplate0_OpeningFcn, \cf2 ...
+\fs24 \cf0 \
+
+\fs20                    \cf4 'gui_OutputFcn'\cf0 ,  @guidetemplate0_OutputFcn, \cf2 ...
+\fs24 \cf0 \
+
+\fs20                    \cf4 'gui_LayoutFcn'\cf0 ,  [] , \cf2 ...
+\fs24 \cf0 \
+
+\fs20                    \cf4 'gui_Callback'\cf0 ,   []);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  nargin && ischar(varargin\{1\})
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     gui_State.gui_Callback = str2func(varargin\{1\});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  nargout
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     [varargout\{1:nargout\}] = gui_mainfcn(gui_State, varargin\{:\});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     gui_mainfcn(gui_State, varargin\{:\});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % End initialization code - DO NOT EDIT
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % --- Executes just before guidetemplate0 is made visible.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  guidetemplate0_OpeningFcn(hObject, eventdata, handles, varargin)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % This function has no output args, see OutputFcn.
+\fs24 \cf0 \
+
+\fs20 \cf3 % hObject    handle to figure
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3 % varargin   command line arguments to guidetemplate0 (see VARARGIN)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Choose default command line output for guidetemplate0
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 handles.output = hObject;
+\fs24 \
+
+\fs20 set(handles.Epoch_Dur_Pop,\cf4 'String'\cf0 ,num2cell(1:300),\cf4 'Value'\cf0 ,10);
+\fs24 \
+
+\fs20 set(handles.Min_Len_Pop,\cf4 'String'\cf0 ,num2cell(1:10),\cf4 'Value'\cf0 ,5);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % Update handles structure
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 guidata(hObject, handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % UIWAIT makes guidetemplate0 wait for user response (see UIRESUME)
+\fs24 \cf0 \
+
+\fs20 \cf3 % uiwait(handles.figure1);
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % --- Outputs from this function are returned to the command line.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  varargout = guidetemplate0_OutputFcn(hObject, eventdata, handles) 
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % varargout  cell array for returning output args (see VARARGOUT);
+\fs24 \cf0 \
+
+\fs20 \cf3 % hObject    handle to figure
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Get default command line output from handles structure
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 varargout\{1\} = handles.output;
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Create_File_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Create_File_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Create_File_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 a = fieldnames(handles);
+\fs24 \
+
+\fs20 b = cellfun(@(x) (~isempty(strfind(x,\cf4 'Pop'\cf0 )) | ~isempty(strfind(x,\cf4 'Push'\cf0 ))),a);
+\fs24 \
+
+\fs20 c = arrayfun(@(x) getfield(handles,a\{x\}),find(b));
+\fs24 \
+
+\fs20 c = c(strcmp(get(c,\cf4 'Enable'\cf0 ),\cf4 'on'\cf0 ));
+\fs24 \
+
+\fs20 set(c,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20 wbar = waitbar(0,\cf4 'Creating Outputs...'\cf0 );
+\fs24 \
+
+\fs20 Create_Outputs(handles,wbar);
+\fs24 \
+
+\fs20 close(wbar);
+\fs24 \
+
+\fs20 set(c,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 )
+\fs24 \
+
+\fs20 set(handles.Fit_SWA_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20 Save_Sheets(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Fit_SWA_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Fit_SWA_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Fit_SWA_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 LnNormD = getappdata(handles.output,\cf4 'lnNormDelta'\cf0 );
+\fs24 \
+
+\fs20 time = getappdata(handles.output,\cf4 'fitTime'\cf0 );
+\fs24 \
+
+\fs20 time(end+1) = time(end)+time(2);
+\fs24 \
+
+\fs20 time = time(2:end);
+\fs24 \
+
+\fs20 NormDelta = exp(LnNormD);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 t1 = 3.5;
+\fs24 \
+
+\fs20 t2 = time(fix(end-end/4));
+\fs24 \
+
+\fs20 lim_pop = Set_Lim_Popup(t1,t2,time,NormDelta);
+\fs24 \
+
+\fs20 waitfor(lim_pop,\cf4 'Visible'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20 t1 = getappdata(lim_pop,\cf4 'Limit1'\cf0 );
+\fs24 \
+
+\fs20 t2 = getappdata(lim_pop,\cf4 'Limit2'\cf0 );
+\fs24 \
+
+\fs20 delete(lim_pop);
+\fs24 \
+
+\fs20 fragStart = find(time>=t1,1,\cf4 'first'\cf0 );
+\fs24 \
+
+\fs20 fragStop = find(time<=t2,1,\cf4 'last'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 y1 = NormDelta(fragStart:fragStop);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %deinfe x1 as time in minutes with start of fragment at t=1/6
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 x1 = (time(1):time(1):numel(y1)*time(1))';
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %fit fragment to y= (y0-plt)*e^(-K*x) + plt to get y0, plt, and K
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 F = @(c,x)(c(3)-c(1))*exp(-x*c(2)) + c(1);
+\fs24 \
+
+\fs20 opts = optimset(\cf4 'Display'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20 c = lsqcurvefit(F,[min(y1) 1 y1(1)],x1,y1,[],[],opts);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %then we put the fragment back into the time frame of the full dataset and
+\fs24 \cf0 \
+
+\fs20 \cf3 %refit holding K constant to get the plateau and y0
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 x2 = time(fragStart:fragStop);
+\fs24 \
+
+\fs20 y2 = y1(2:end);
+\fs24 \
+
+\fs20 x2 = x2(2:end);
+\fs24 \
+
+\fs20 F2 = @(k,x)(k(2)-k(1))*exp(-x*c(2)) + k(1);
+\fs24 \
+
+\fs20 k = lsqcurvefit(F2,[min(y1) c(3)],x2,y2,[],[],opts);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %transform y2 -> y3 according to y3 = (y2-k(1))/(k(2)-k(1))
+\fs24 \cf0 \
+
+\fs20 \cf3 %this normalizes the fragment to have a span on 1
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 y3 = (y2-k(1))/(k(2)-k(1));
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %now fit y3 to y3 = exp(-K*x) to get K for a normalized fit
+\fs24 \cf0 \
+
+\fs20 \cf3 %tau = 1/K with units of minutes
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 F3 = @(l,x)exp(-l(1)*x);
+\fs24 \
+
+\fs20 [l,resnorm] = lsqcurvefit(F3,c(2),x2,y3,[],[],opts);
+\fs24 \
+
+\fs20 tau = 1/l;
+\fs24 \
+
+\fs20 Rsquared = 1 - resnorm/norm(y3-mean(y3))^2;
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %Plot resutls
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 h = figure;
+\fs24 \
+
+\fs20 normSWA = (NormDelta-k(1))/(k(2)-k(1));
+\fs24 \
+
+\fs20 plot(time,normSWA,\cf4 'r.'\cf0 );
+\fs24 \
+
+\fs20 hold \cf4 on
+\fs24 \cf0 \
+
+\fs20 Yfit = exp(-time/tau);
+\fs24 \
+
+\fs20 plot(x2,y3,\cf4 'b.'\cf0 )
+\fs24 \
+
+\fs20 plot(time, Yfit,\cf4 'r-'\cf0 )
+\fs24 \
+
+\fs20 legend(\cf4 'Normalized Average SWS episode'\cf0 ,\cf4 'Fitted Fragment'\cf0 ,\cf4 'Fit'\cf0 ,\cf4 'Location'\cf0 ,\cf4 'NorthEast'\cf0 )
+\fs24 \
+
+\fs20 hold \cf4 off
+\fs24 \cf0 \
+
+\fs20 title(\{\cf4 'SWS Normalized Delta Decay Fit'\cf0 ,sprintf(\cf4 'Tau = %0.2f Minutes'\cf0 ,tau)\});
+\fs24 \
+
+\fs20 xlabel(\cf4 'Time (Sec)'\cf0 );
+\fs24 \
+
+\fs20 ylabel(\cf4 'Normalized SWA Power'\cf0 );
+\fs24 \
+
+\fs20 ylim([min(normSWA) 1]);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %save and display results
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Yint = k(2);
+\fs24 \
+
+\fs20 plt = k(1);
+\fs24 \
+
+\fs20 Kval = 1/tau;
+\fs24 \
+
+\fs20 timeStart = time(fragStart);
+\fs24 \
+
+\fs20 timeStop = time(fragStop);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 output = cell(8,2);
+\fs24 \
+
+\fs20 output(:,1) = \{\cf4 'Fit of SWA Decay of SWS episodes'\cf0 ;\cf4 'Fragment Start Time (min)'\cf0 ;\cf4 'Fragment Stop Time (min)'\cf0 ;\cf4 'Tau (min)'\cf0 ;\cf4 'K-Value (1/min)'\cf0 ;\cf4 'Plateau'\cf0 ;\cf4 'Y_0'\cf0 ;\cf4 'R-Squared'\cf0 \};
+\fs24 \
+
+\fs20 output(2:end,2) = num2cell([timeStart;timeStop;tau;Kval;plt;Yint;Rsquared]);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 outstr = sprintf(\cf4 'Fit of SWA Decay of SWS episodes\\n\\n\\tFragment Start Time (min): %0.2f\\n\\tFragment Stop Time (min): %0.2f\\n\\tTau (min): %0.2f\\n\\tK-Value (1/min): %0.2f\\n\\tPlateau: %0.2f\\n\\tY_0: %0.2f\\n\\tR-Squared: %0.2f'\cf0 ,\cf2 ...
+\fs24 \cf0 \
+
+\fs20     timeStart,timeStop,tau,Kval,plt,Yint,Rsquared);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 q = \cf4 'Yes'\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ~isfield(getappdata(handles.output),\cf4 'FitStr'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0 msgbox(\{outstr,\cf4 ''\cf0 ,\cf4 'These fit results have been saved to your SWA decay File.'\cf0 ,\cf2 ...
+\fs24 \cf0 \
+
+\fs20     \cf4 'If you are not satified with this fit you can click the fit button again.'\cf0 ,\cf2 ...
+\fs24 \cf0 \
+
+\fs20     \cf4 'Also please take a moment to save the produced figure associated with the fit.'\cf0 \});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     prevFit = getappdata(handles.output,\cf4 'FitStr'\cf0 );
+\fs24 \
+
+\fs20     newOutStr = [\cf4 'Previous Fit: '\cf0  char(10) prevFit char(10) char(10) \cf4 'New Fit: '\cf0  char(10) outstr char(10) char(10) \cf4 'Should the old fit be replaced?'\cf0 ];
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     q = questdlg(newOutStr,\cf4 'Keep New Fit?'\cf0 ,\cf4 'Yes'\cf0 ,\cf4 'No'\cf0 ,\{\cf4 'Yes'\cf0 \});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  strcmp(q,\cf4 'Yes'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     status = xlswrite(getappdata(handles.output,\cf4 'outFile'\cf0 ),output,\cf4 'SWS Decay Fit'\cf0 );
+\fs24 \
+
+\fs20     \cf2 if\cf0  ~status
+\fs24 \
+
+\fs20         errordlg(\cf4 'Writing fit to excel file failed.'\cf0 )
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     setappdata(handles.output,\cf4 'FitStr'\cf0 ,outstr);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Change_File_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Change_File_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Change_File_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 i = get(handles.File_Listbox,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 fn = getappdata(handles.output,\cf4 'Files'\cf0 );
+\fs24 \
+
+\fs20 p = getappdata(handles.output,\cf4 'Paths'\cf0 );
+\fs24 \
+
+\fs20 IDs = getappdata(handles.output,\cf4 'AnimalIDs'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 [fn\{i\},p\{i\}] = uigetfile([pwd filesep \cf4 '*.xlsx'\cf0 ],\cf4 'Select new input file'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  fn\{i\}==0
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 return\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 setappdata(handles.output,\cf4 'Files'\cf0 ,fn);
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'Paths'\cf0 ,p);
+\fs24 \
+
+\fs20 set(handles.File_Listbox,\cf4 'String'\cf0 ,fn);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 ID = str2double(inputdlg(\cf4 'Animal ID #:'\cf0 ,\cf4 'Animal ID Input'\cf0 ));
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 IDs\{i\} = ID;
+\fs24 \
+
+\fs20 set(handles.ID_Listbox,\cf4 'String'\cf0 ,IDs);
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'AnimalIDs'\cf0 ,IDs);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  get(handles.Type_Pop,\cf4 'Value'\cf0 )==1
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     gamma = str2double(inputdlg(\cf4 'Average Baseline Gamma Power:'\cf0 ,\cf4 'Baseline Gamma Input'\cf0 ));
+\fs24 \
+
+\fs20     \cf2 if\cf0  isnan(gamma)
+\fs24 \
+
+\fs20         gamma = 1;
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     gammas = getappdata(handles.output,\cf4 'AvgGamma'\cf0 );
+\fs24 \
+
+\fs20     gammas\{i\} = gamma;
+\fs24 \
+
+\fs20     setappdata(handles.output,\cf4 'AvgGamma'\cf0 ,gammas);
+\fs24 \
+
+\fs20     set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,gammas);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Change_ID_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Change_ID_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Change_ID_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 i = get(handles.ID_Listbox,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 IDs = getappdata(handles.output,\cf4 'AnimalIDs'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 ID = inputdlg(\cf4 'Animal ID #:'\cf0 ,\cf4 'Animal ID Input'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ~strcmp(ID,\cf4 ''\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     IDs(i) = ID;
+\fs24 \
+
+\fs20     set(handles.ID_Listbox,\cf4 'String'\cf0 ,IDs);
+\fs24 \
+
+\fs20     setappdata(handles.output,\cf4 'AnimalIDs'\cf0 ,IDs);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on selection change in File_Listbox.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  File_Listbox_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to File_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hints: contents = cellstr(get(hObject,'String')) returns File_Listbox contents as cell array
+\fs24 \cf0 \
+
+\fs20 \cf3 %        contents\{get(hObject,'Value')\} returns selected item from File_Listbox
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 val = get(hObject,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 set(handles.ID_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20 set(handles.Gamma_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  File_Listbox_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to File_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: listbox controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on selection change in ID_Listbox.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  ID_Listbox_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to ID_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hints: contents = cellstr(get(hObject,'String')) returns ID_Listbox contents as cell array
+\fs24 \cf0 \
+
+\fs20 \cf3 %        contents\{get(hObject,'Value')\} returns selected item from ID_Listbox
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 val = get(hObject,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 set(handles.Gamma_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20 set(handles.File_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  ID_Listbox_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to ID_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: listbox controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on selection change in Gamma_Listbox.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Gamma_Listbox_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Gamma_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hints: contents = cellstr(get(hObject,'String')) returns Gamma_Listbox contents as cell array
+\fs24 \cf0 \
+
+\fs20 \cf3 %        contents\{get(hObject,'Value')\} returns selected item from Gamma_Listbox
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 val = get(hObject,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 set(handles.ID_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20 set(handles.File_Listbox,\cf4 'Value'\cf0 ,val);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Gamma_Listbox_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Gamma_Listbox (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: listbox controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Change_Gamma_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Change_Gamma_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Change_Gamma_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 i = get(handles.Gamma_Listbox,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 gamma = str2double(inputdlg(\cf4 'Average Baseline Gamma Power:'\cf0 ,\cf4 'Baseline Gamma Input'\cf0 ));
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  isnan(gamma)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     gamma = 1;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 gammas = getappdata(handles.output,\cf4 'AvgGamma'\cf0 );
+\fs24 \
+
+\fs20 gammas(i) = gamma;
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'AvgGamma'\cf0 ,gammas);
+\fs24 \
+
+\fs20 set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,gammas);
+\fs24 \
+
+\fs20 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Num_Files_Pop_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Num_Files_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: popupmenu controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Epoch_Dur_Pop_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Epoch_Dur_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: popupmenu controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on selection change in Type_Pop.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Type_Pop_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Type_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hints: contents = cellstr(get(hObject,'String')) returns Type_Pop contents as cell array
+\fs24 \cf0 \
+
+\fs20 \cf3 %        contents\{get(hObject,'Value')\} returns selected item from Type_Pop
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  get(hObject,\cf4 'Value'\cf0 )==1
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  isfield(getappdata(handles.output),\cf4 'Files'\cf0 )
+\fs24 \
+
+\fs20         msgbox(\cf4 'Please input Baseline Gamma Power manually using the Change Gamma button.'\cf0 );
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Check_Gammas(handles);
+\fs24 \
+
+\fs20 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Type_Pop_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Type_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: popupmenu controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on button press in Choose_Files_Push.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Choose_Files_Push_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Choose_Files_Push (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 N = get(handles.Num_Files_Pop,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 [fn\{1\},p\{1\}] = uigetfile([pwd filesep \cf4 '*.xlsx'\cf0 ],[\cf4 'Choose File # '\cf0  num2str(1)]);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  p\{1\} ==0,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 return\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2 for\cf0  i=2:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     [fn\{i\},p\{i\}] = uigetfile([p\{1\} \cf4 '*.xlsx'\cf0 ],[\cf4 'Choose File # '\cf0  num2str(i)]);
+\fs24 \
+
+\fs20     \cf2 if\cf0  p\{i\}==0,
+\fs24 \
+
+\fs20         \cf2 return\cf0 ;
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 set(handles.File_Listbox,\cf4 'String'\cf0 ,fn);
+\fs24 \
+
+\fs20 set(handles.Change_File_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'Files'\cf0 ,fn);
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'Paths'\cf0 ,p);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 IDprompt = cellfun(@(x) [\cf4 'ID# for '\cf0  x \cf4 ':'\cf0 ],fn,\cf4 'UniformOutput'\cf0 ,0);
+\fs24 \
+
+\fs20 IDs = inputdlg(IDprompt,\cf4 'Animal ID input'\cf0 );
+\fs24 \
+
+\fs20 IDs(cellfun(@(x) strcmp(x,\cf4 ''\cf0 ),IDs)) = \{NaN\};
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'AnimalIDs'\cf0 ,IDs);
+\fs24 \
+
+\fs20 set(handles.ID_Listbox,\cf4 'String'\cf0 ,IDs);
+\fs24 \
+
+\fs20 set(handles.Change_ID_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  get(handles.Type_Pop,\cf4 'Value'\cf0 )==1
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     Gprompt = cellfun(@(x) [\cf4 'Avg Gamma for '\cf0  x \cf4 ':'\cf0 ],IDs,\cf4 'UniformOutput'\cf0 ,0);
+\fs24 \
+
+\fs20     Gammas = str2double(inputdlg(Gprompt,\cf4 'Avg Gamma Input'\cf0 ));
+\fs24 \
+
+\fs20     \cf2 if\cf0  any(isnan(Gammas))
+\fs24 \
+
+\fs20         msgbox(\cf4 'Please use the Change Gamma button to assign an average baseline gamma to the unassigned files.'\cf0 );
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     setappdata(handles.output,\cf4 'AvgGamma'\cf0 ,Gammas);
+\fs24 \
+
+\fs20     set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,num2cell(Gammas));
+\fs24 \
+
+\fs20     set(handles.Change_Gamma_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  isfield(getappdata(handles.output),\cf4 'AvgGamma'\cf0 )
+\fs24 \
+
+\fs20         rmappdata(handles.output,\cf4 'AvgGamma'\cf0 );
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     Gammas = repmat(\cf4 'Auto'\cf0 ,N,1);
+\fs24 \
+
+\fs20     set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,cellstr(Gammas));
+\fs24 \
+
+\fs20     
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %Checks to see if gamma values are set correctly
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Check_Gammas(handles)
+\fs24 \
+
+\fs20 \cf2 if\cf0  isfield(getappdata(handles.output),\cf4 'Files'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  get(handles.Type_Pop,\cf4 'Value'\cf0 ) == 1 && ~isfield(getappdata(handles.output),\cf4 'AvgGamma'\cf0 )
+\fs24 \
+
+\fs20         mGamma = NaN(numel(getappdata(handles.output,\cf4 'Files'\cf0 )),1);
+\fs24 \
+
+\fs20         set(handles.Change_Gamma_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 )
+\fs24 \
+
+\fs20         set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,num2cell(mGamma));
+\fs24 \
+
+\fs20         setappdata(handles.output,\cf4 'AvgGamma'\cf0 ,mGamma);
+\fs24 \
+
+\fs20     \cf2 else
+\fs24 \cf0 \
+
+\fs20         mGamma = cellstr(repmat(\cf4 'Auto'\cf0 ,numel(getappdata(handles.output,\cf4 'Files'\cf0 )),1));
+\fs24 \
+
+\fs20         set(handles.Change_Gamma_Push,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Gamma_Listbox,\cf4 'String'\cf0 ,mGamma);
+\fs24 \
+
+\fs20         \cf2 if\cf0  isfield(getappdata(handles.output),\cf4 'AvgGamma'\cf0 )
+\fs24 \
+
+\fs20             rmappdata(handles.output,\cf4 'AvgGamma'\cf0 );
+\fs24 \
+
+\fs20         \cf2 end
+\fs24 \cf0 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 %Checks to see if enough fields are filled to allow for output file
+\fs24 \cf0 \
+
+\fs20 \cf3 %creation
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Check_Fields(handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0 h = handles.output;
+\fs24 \
+
+\fs20 flag =1;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ~isfield(getappdata(h),\cf4 'Files'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     flag=0;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  numel(getappdata(h,\cf4 'Files'\cf0 ))~=get(handles.Num_Files_Pop,\cf4 'Value'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     flag =0;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  get(handles.Type_Pop,\cf4 'Value'\cf0 )==1
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  any(isnan(getappdata(h,\cf4 'AvgGamma'\cf0 )))
+\fs24 \
+
+\fs20         flag = 0;
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  isfield(getappdata(h),\cf4 'AnimalIDs'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  any(cellfun(@(x) any(isnan(x)),getappdata(h,\cf4 'AnimalIDs'\cf0 )))
+\fs24 \
+
+\fs20         flag = 0;
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     flag = 0;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2 if\cf0  flag
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(handles.Create_File_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(handles.Create_File_Push,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes on selection change in Num_Files_Pop.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Num_Files_Pop_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Num_Files_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hints: contents = cellstr(get(hObject,'String')) returns Num_Files_Pop contents as cell array
+\fs24 \cf0 \
+
+\fs20 \cf3 %        contents\{get(hObject,'Value')\} returns selected item from Num_Files_Pop
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  isfield(getappdata(handles.output),\cf4 'Files'\cf0 )
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  get(hObject,\cf4 'Value'\cf0 ) ~= numel(getappdata(handles.output,\cf4 'Files'\cf0 ))
+\fs24 \
+
+\fs20         msgbox(\cf4 'The number you have selected does not match the current file list. Please use the Choose Files button to re-select files.'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Change_File_Push,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Change_ID_Push,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Change_Gamma_Push,\cf4 'Enable'\cf0 ,\cf4 'off'\cf0 );
+\fs24 \
+
+\fs20     \cf2 else
+\fs24 \cf0 \
+
+\fs20         set(handles.Change_File_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Change_ID_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20         set(handles.Change_Gamma_Push,\cf4 'Enable'\cf0 ,\cf4 'on'\cf0 );
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 Check_Fields(handles);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Create_Outputs(handles,wbar)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0 h = handles.output;
+\fs24 \
+
+\fs20 fn = getappdata(h,\cf4 'Files'\cf0 );
+\fs24 \
+
+\fs20 p = getappdata(h,\cf4 'Paths'\cf0 );
+\fs24 \
+
+\fs20 ids = getappdata(h,\cf4 'AnimalIDs'\cf0 );
+\fs24 \
+
+\fs20 EpochDur = get(handles.Epoch_Dur_Pop,\cf4 'Value'\cf0 );
+\fs24 \
+
+\fs20 N = numel(fn);
+\fs24 \
+
+\fs20 minLen = get(handles.Min_Len_Pop,\cf4 'Value'\cf0 )*60/EpochDur;
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 data = cell(N,1);
+\fs24 \
+
+\fs20 headers = cell(N,1);
+\fs24 \
+
+\fs20 StateCol = cell(N,1);
+\fs24 \
+
+\fs20 StateRow = cell(N,1);
+\fs24 \
+
+\fs20 LenCol = cell(N,1);
+\fs24 \
+
+\fs20 EpisodeArr = cell(N,1);
+\fs24 \
+
+\fs20 maxDur = zeros(N,1);
+\fs24 \
+
+\fs20 maxSize = zeros(N,1);
+\fs24 \
+
+\fs20 maxTime = 0;
+\fs24 \
+
+\fs20 width=0;
+\fs24 \
+
+\fs20 flag = (get(handles.Type_Pop,\cf4 'Value'\cf0 )==1);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  flag 
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     avgGamma = getappdata(h,\cf4 'AvgGamma'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     avgGamma = NaN(N,1);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 outputB = cell(N,1);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %read data
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     waitbar(.6*i/N,wbar,[\cf4 'Loading Data File #'\cf0  num2str(i) \cf4 '...'\cf0 ])
+\fs24 \
+
+\fs20     [data\{i\},headers\{i\}] = xlsread([p\{i\} fn\{i\}],2);
+\fs24 \
+
+\fs20     \cf2 if\cf0  ~flag
+\fs24 \
+
+\fs20         normSWA = xlsread([p\{i\} fn\{i\}],4);
+\fs24 \
+
+\fs20         avgGamma(i) = normSWA(1,12);
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     header = headers\{i\};
+\fs24 \
+
+\fs20     idx = cellfun(@(x) ~isempty(strfind(x,\cf4 'Begin NREM'\cf0 )),header(:,6));
+\fs24 \
+
+\fs20     StateCol\{i\} = header(idx,6);
+\fs24 \
+
+\fs20     LenCol\{i\} = data\{i\}(find(idx)-1,7);
+\fs24 \
+
+\fs20     maxDur(i) = max(LenCol\{i\});
+\fs24 \
+
+\fs20     maxSize(i) = size(LenCol\{i\},1);
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     epArr = NaN(maxDur(i)+2,sum(LenCol\{i\}>=minLen)+1);
+\fs24 \
+
+\fs20     idx1 = cellfun(@(x) ~isempty(strfind(x,\cf4 'NREM'\cf0 )),header(1,:));
+\fs24 \
+
+\fs20     idx2 = data\{i\}(1,:)>=minLen;
+\fs24 \
+
+\fs20     idx = idx1 & idx2;
+\fs24 \
+
+\fs20     StateRow\{i\} = header(1,idx);
+\fs24 \
+
+\fs20     [row2,sortOrd] = sort(data\{i\}(1,idx),\cf4 'ascend'\cf0 );
+\fs24 \
+
+\fs20     row3 = data\{i\}(2,idx);
+\fs24 \
+
+\fs20     row3 = row3(sortOrd);
+\fs24 \
+
+\fs20     deltas = data\{i\}(3:maxDur(i)+2,idx);
+\fs24 \
+
+\fs20     deltas = deltas(:,sortOrd);
+\fs24 \
+
+\fs20     time = EpochDur/60:EpochDur/60:max(row2)*EpochDur/60;
+\fs24 \
+
+\fs20     \cf2 if\cf0  numel(time)>numel(maxTime)
+\fs24 \
+
+\fs20         maxTime = time';
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     epArr(1,2:end) = row2;
+\fs24 \
+
+\fs20     epArr(2,2:end) = row3;
+\fs24 \
+
+\fs20     epArr(3:end,2:end) = deltas;
+\fs24 \
+
+\fs20     epArr(3:end,1) = time';
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     EpisodeArr\{i\} = epArr;
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     out = cell(numel(time)+3,sum(idx)+1);
+\fs24 \
+
+\fs20     out(1,2:end) = StateRow\{i\};
+\fs24 \
+
+\fs20     out(2:end,:) = num2cell(epArr);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20     \cf2 for\cf0  j=1:numel(out),
+\fs24 \
+
+\fs20         \cf2 if\cf0  isnan(out\{j\})
+\fs24 \
+
+\fs20             out(j) = \{[]\};
+\fs24 \
+
+\fs20         \cf2 end
+\fs24 \cf0 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     
+\fs24 \
+
+\fs20     outputB\{i\} = out;
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     width = width + size(out,2);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 waitbar(.6,wbar,\cf4 'Creating Cumulative SWS sheet...'\cf0 )
+\fs24 \
+
+\fs20 outputA = makeCumulativeSWS(StateCol,LenCol,maxDur,maxSize,N,ids);
+\fs24 \
+
+\fs20 waitbar(.75,wbar,\cf4 'Create Ln Norm SWA Sheet...'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 maxTime(2:end) = maxTime(1:end-1);
+\fs24 \
+
+\fs20 maxTime(1) = 0;
+\fs24 \
+
+\fs20 outputC = cell(numel(maxTime)+1,width+5+2*N);
+\fs24 \
+
+\fs20 outputC(2:end,1) = num2cell(maxTime);
+\fs24 \
+
+\fs20 outputC(1,1) = \{\cf4 'Time (min)'\cf0 \};
+\fs24 \
+
+\fs20 startCol = 1;
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     out = outputB\{i\}(4:end,2:end);
+\fs24 \
+
+\fs20     dataOut = NaN(size(out,1),size(out,2));
+\fs24 \
+
+\fs20     \cf2 for\cf0  j=1:numel(out),
+\fs24 \
+
+\fs20         \cf2 if\cf0  ~isempty(out\{j\}),
+\fs24 \
+
+\fs20             dataOut(j) = log(out\{j\}/avgGamma(i));
+\fs24 \
+
+\fs20         \cf2 end
+\fs24 \cf0 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     lastRow = 1;
+\fs24 \
+
+\fs20     \cf2 for\cf0  j=1:size(dataOut,1),
+\fs24 \
+
+\fs20         \cf2 if\cf0  sum(~isnan(dataOut(j,:)))>=5,
+\fs24 \
+
+\fs20             lastRow = j;
+\fs24 \
+
+\fs20         \cf2 end
+\fs24 \cf0 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     avg = zeros(lastRow,1);
+\fs24 \
+
+\fs20     \cf2 for\cf0  j=1:lastRow,
+\fs24 \
+
+\fs20         avg(j) = mean(dataOut(j,~isnan(dataOut(j,:))));
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     outputC(1,startCol+1) = ids(i);
+\fs24 \
+
+\fs20     outputC(2:size(dataOut,1)+1,startCol+1:size(dataOut,2)+startCol) = num2cell(dataOut);
+\fs24 \
+
+\fs20     outputC(1,startCol+size(dataOut,2)+1) = \{\cf4 'Avg'\cf0 \};
+\fs24 \
+
+\fs20     outputC(2:size(avg,1)+1,startCol+size(dataOut,2)+1) = num2cell(avg);
+\fs24 \
+
+\fs20     startCol = startCol+size(dataOut,2)+2;
+\fs24 \
+
+\fs20     Avgs\{i\} = avg;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 startCol = startCol+3;
+\fs24 \
+
+\fs20 outputC(2:end,startCol) = num2cell(maxTime);
+\fs24 \
+
+\fs20 outputC(1,startCol) = \{\cf4 'Time (min)'\cf0 \};
+\fs24 \
+
+\fs20 avgL = min(cellfun(@(x) size(x,1),Avgs));
+\fs24 \
+
+\fs20 AvgArr = [];
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     AvgArr = [AvgArr Avgs\{i\}(1:avgL)];
+\fs24 \
+
+\fs20     outputC(1,startCol+i) = ids(i);
+\fs24 \
+
+\fs20     outputC(2:size(Avgs\{i\},1)+1,startCol+i) = num2cell(Avgs\{i\});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 startCol = startCol+N+1 ;
+\fs24 \
+
+\fs20 outputC(1,startCol) = \{\cf4 'Group Avg'\cf0 \};
+\fs24 \
+
+\fs20 outputC(2:avgL+1,startCol) = num2cell(mean(AvgArr,2));
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:numel(outputC),
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 if\cf0  isnan(outputC\{j\})
+\fs24 \
+
+\fs20         outputC(j) = \{[]\};
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 setappdata(handles.output,\cf4 'fitTime'\cf0 ,maxTime(1:avgL));
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'lnNormDelta'\cf0 ,mean(AvgArr,2));
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'outputA'\cf0 ,outputA);
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'outputB'\cf0 ,outputB);
+\fs24 \
+
+\fs20 setappdata(handles.output,\cf4 'outputC'\cf0 ,outputC);
+\fs24 \
+
+\fs20 waitbar(1,wbar,\cf4 'Done!'\cf0 )
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  [output] = makeCumulativeSWS(State,Len,maxDur,maxSize,N,ids)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 %all calculations
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 bins = 8:4:max(maxDur)+4;
+\fs24 \
+
+\fs20 freqs = cell(N,1);
+\fs24 \
+
+\fs20 sumP = cell(N,1);
+\fs24 \
+
+\fs20 cumulP = cell(N,1);
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     freq = zeros(numel(bins),1);
+\fs24 \
+
+\fs20     lens = Len\{i\};
+\fs24 \
+
+\fs20     lastBin = 0;
+\fs24 \
+
+\fs20     \cf2 for\cf0  j=1:numel(bins),
+\fs24 \
+
+\fs20         freq(j) = sum(lens<=bins(j) & lens>lastBin);
+\fs24 \
+
+\fs20         lastBin = bins(j);
+\fs24 \
+
+\fs20     \cf2 end\cf0  
+\fs24 \
+
+\fs20     freqs\{i\} = freq;
+\fs24 \
+
+\fs20     sumP\{i\} = freq./sum(freq) * 100;
+\fs24 \
+
+\fs20     cumulP\{i\} = cumsum(sumP\{i\});
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 %create output
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 output = cell(max(maxSize),9*N+10);
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 for\cf0  i=1:N,
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     freq = freqs\{i\};
+\fs24 \
+
+\fs20     pSum = sumP\{i\};
+\fs24 \
+
+\fs20     cumP = cumulP\{i\};
+\fs24 \
+
+\fs20     lens = Len\{i\};
+\fs24 \
+
+\fs20     states = State\{i\};
+\fs24 \
+
+\fs20     mouseID = ids\{i\};
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     output(2:numel(states)+1,3*i-2)= states;
+\fs24 \
+
+\fs20     output(1,3*i-2) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2:numel(lens)+1,3*i-1) = num2cell(lens);
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20    
+\fs24 \
+
+\fs20     output(2:numel(lens)+1,3*N+2+i) = num2cell(lens);
+\fs24 \
+
+\fs20     output(1,3*N+2+i) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2:numel(bins)+1,3*N+2) = num2cell(bins);
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     output(3:numel(bins)+2,4*N+3+2*i) = num2cell(bins);
+\fs24 \
+
+\fs20     output(3:numel(freq)+2,4*N+4+2*i) = num2cell(freq);
+\fs24 \
+
+\fs20     output(1,4*N+4+2*i) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2,4*N+3+2*i) = \{\cf4 'Bin'\cf0 \};
+\fs24 \
+
+\fs20     output(2,4*N+4+2*i) = \{\cf4 'Frequency'\cf0 \};
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     output(3:numel(freq)+3,6*N+6+i) = num2cell([freq;sum(freq)]);
+\fs24 \
+
+\fs20     output(1,6*N+6+i) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2,6*N+6+i) = \{\cf4 'Frequency'\cf0 \};
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     output(3:numel(pSum)+2,7*N+8+i) = num2cell(pSum);
+\fs24 \
+
+\fs20     output(1,7*N+8+i) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2,7*N+8+i) = \{\cf4 '% of sum'\cf0 \};
+\fs24 \
+
+\fs20     
+\fs24 \
+
+\fs20     output(3:numel(cumP)+2,8*N+10+i) = num2cell(cumP);
+\fs24 \
+
+\fs20     output(1,8*N+10+i) = \{mouseID\};
+\fs24 \
+
+\fs20     output(2,8*N+10+i) = \{\cf4 'cumul'\cf0 \};
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 output(numel(freq)+3,6*N+6) = \{\cf4 'Sum'\cf0 \};
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Save_Sheets(handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0 h = handles.output;
+\fs24 \
+
+\fs20 s1 = getappdata(h,\cf4 'outputA'\cf0 );
+\fs24 \
+
+\fs20 s2 = getappdata(h,\cf4 'outputB'\cf0 );
+\fs24 \
+
+\fs20 s3 = getappdata(h,\cf4 'outputC'\cf0 );
+\fs24 \
+
+\fs20 ids = getappdata(h,\cf4 'AnimalIDs'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 [fn,p] = uiputfile([pwd filesep \cf4 '*.xlsx'\cf0 ],\cf4 'Choose output file'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  fn==0
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf2 return\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 setappdata(h,\cf4 'outFile'\cf0 ,[p fn]);
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20  
+\fs24 \
+
+\fs20 status = xlswrite([p fn],s1,\cf4 'Cumulative SWS'\cf0 );
+\fs24 \
+
+\fs20  
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ~status
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     errordlg(\cf4 'xls write failed.'\cf0 );
+\fs24 \
+
+\fs20     \cf2 return\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 else
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0     \cf3 % Open Excel file.
+\fs24 \cf0 \
+
+\fs20     objExcel = actxserver(\cf4 'Excel.Application'\cf0 );
+\fs24 \
+
+\fs20     objExcel.Workbooks.Open(fullfile(p,fn)); \cf3 % Full path is necessary!
+\fs24 \cf0 \
+
+\fs20     \cf3 % Delete sheets.
+\fs24 \cf0 \
+
+\fs20     \cf2 try
+\fs24 \cf0 \
+
+\fs20         \cf3 % Throws an error if the sheets do not exist.
+\fs24 \cf0 \
+
+\fs20         objExcel.ActiveWorkbook.Worksheets.Item([\cf4 'Sheet 1'\cf0 ]).Delete;
+\fs24 \
+
+\fs20         objExcel.ActiveWorkbook.Worksheets.Item([\cf4 'Sheet 2'\cf0 ]).Delete;
+\fs24 \
+
+\fs20         objExcel.ActiveWorkbook.Worksheets.Item([\cf4 'Sheet 3'\cf0 ]).Delete;
+\fs24 \
+
+\fs20     \cf2 catch
+\fs24 \cf0 \
+
+\fs20         ; \cf3 % Do nothing.
+\fs24 \cf0 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+
+\fs20     \cf3 % Save, close and clean up.
+\fs24 \cf0 \
+
+\fs20     objExcel.ActiveWorkbook.Save;
+\fs24 \
+
+\fs20     objExcel.ActiveWorkbook.Close;
+\fs24 \
+
+\fs20     objExcel.Quit;
+\fs24 \
+
+\fs20     objExcel.delete;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2 for\cf0  i=1:numel(s2),
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     status = xlswrite([p fn],s2\{i\},ids\{i\});
+\fs24 \
+
+\fs20     \cf2 if\cf0  ~status
+\fs24 \
+
+\fs20         errordlg(\cf4 'xls write failed.'\cf0 );
+\fs24 \
+
+\fs20         \cf2 return\cf0 ;
+\fs24 \
+
+\fs20     \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 status = xlswrite([p fn],s3,\cf4 'Ln Norm SWA'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ~status
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     errordlg(\cf4 'xls write failed.'\cf0 );
+\fs24 \
+
+\fs20     \cf2 return\cf0 ;
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --- Executes during object creation, after setting all properties.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Min_Len_Pop_CreateFcn(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Min_Len_Pop (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    empty - handles not created until after all CreateFcns called
+\fs24 \cf0 \
+
+\fs20 \cf3  
+\fs24 \cf0 \
+
+\fs20 \cf3 % Hint: popupmenu controls usually have a white background on Windows.
+\fs24 \cf0 \
+
+\fs20 \cf3 %       See ISPC and COMPUTER.
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 if\cf0  ispc && isequal(get(hObject,\cf4 'BackgroundColor'\cf0 ), get(0,\cf4 'defaultUicontrolBackgroundColor'\cf0 ))
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf0     set(hObject,\cf4 'BackgroundColor'\cf0 ,\cf4 'white'\cf0 );
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf2 end
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+
+\fs20 \cf2  
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf3 % --------------------------------------------------------------------
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf2 function\cf0  Help_Menu_Callback(hObject, eventdata, handles)
+\fs24 \
+\pard\pardeftab720
+
+\fs20 \cf3 % hObject    handle to Help_Menu (see GCBO)
+\fs24 \cf0 \
+
+\fs20 \cf3 % eventdata  reserved - to be defined in a future version of MATLAB
+\fs24 \cf0 \
+
+\fs20 \cf3 % handles    structure with handles and user data (see GUIDATA)
+\fs24 \cf0 \
+\pard\pardeftab720
+
+\fs20 \cf0 text = fileread(\cf4 'Multiple Animal Sleep Analysis Help.txt'\cf0 );
+\fs24 \
+
+\fs20 Text_Display(0,\cf4 'Sleep Analysis Help'\cf0 ,text);
+\fs24 \
+\
+}
