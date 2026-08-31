@@ -1,0 +1,576 @@
+Sleep Auto_Score Help File
+for the Auto_Score program updated 1/22/2015
+by Roshan Nanu
+
+
+Start-up
+
+    Upon opening the program will ask you to choose what type of data file 
+    you have. 
+    Supported files:
+        -.txt
+        	-These files should have a 6 line header (including column labels)
+        	 and the data should be in two columns afterwards with EEG in
+        	 the first column and EMG in the second. Data must be sampled at
+        	 256 Hz. 
+        -.1eg
+        	- This data should have both EEG and EMG data sampled at 250Hz
+        -Raw .mat
+        	-this is a .mat file containing the variables:
+        		- EEG (column vector)
+        		- EMG (column vector)
+        		- Sampling_Rate 
+        		or
+        		-Sampling_Rate_EEG and Sampling_Rate_EMG
+        	-if no sampling rate variable is found both the EEG and EMG
+        	 sampling rates will be set to 256 Hz
+        -Separate txt
+        	- This option is used when the EEG and EMG data is in separate
+        	  text files each with its own sampling rate.
+        	  These files should have a one line header followed by the data
+        	  Upon choosing the file you will be prompted for the sampling
+        	  rate.
+        - Autoscore workspace
+        	- This is to open a workspace saved by the Auto_Score program.
+        	  
+
+    The default Epoch Duration on start-up is 10 seconds, and can be changed 
+    using the Epoch Duration box in the top right.
+    Even if you are opening an autoscore file, the file name shown will 
+    always be of the original data file.
+    Opening a .mat file will be significantly faster than any other file,
+    but .mat files saved with this program take up a lot of space (~150 MB).
+____________________________________________________________________________
+
+What you see on screen:
+
+    EEG and EMG plots for the current epoch.
+        These plots are colors coded to the sleep stage of the current point
+    
+        Waking - Red
+        NREM - Blue
+        REM - Green
+        Artifact - Orange
+    
+        Waking w/ Artifact - Lavender/magenta/purple
+        NREM w/ Artifact - Cyan
+        REM w/ Artifact - Dark Green
+     _______________________________________________________________________
+
+    Main Plot  -  The big plot at the bottom left
+    
+        This plot shows Parameter 1 (x-axis) vs. Parameter 2 (y-axis) for 
+        each epoch. 
+        The default values are EEG Power and EMG Power/Theta Power
+        respectively for the parameters.
+        
+        We have found that EMG Power / Theta Power provides good
+        separation between REM and Waking. This separation can usually
+        be seen upon zooming in. 
+        The best separation is when using (Theta Power^2)/(Delta*EMG Power)
+        for Parameter 2. 
+        
+        There are also bars on the plot which control where the power 
+        thresholds are for state separation.
+        Adjusting these bars will automatically Simple Sort and Cont Sort
+        the data. 
+        Using point select mode, one can select a point on this plot and 
+        have its corresponding EEG and EMG plots shown.
+        
+        Threshold Bars cannot be adjusted in point select mode.
+        
+        You may use the Parameter 1 and Parameter 2 Listboxes to change
+        what variables are used in this plot and for sorting. 
+        ____________________________________________________________________
+
+    Epoch Statistics Box
+    
+        This box shows the number of epochs in various categories. 
+        ____________________________________________________________________
+
+    Sorting Buttons
+        
+        Continuity Sort (Cont Sort)
+            This is a toggle button. While it is toggled on, whenever the 
+            thresholds are adjusted the data will be first sorted according
+            to the thresholds and then according to the following
+            continuity rules. 
+            
+            sorts epochs according to continuity rules:
+                1) No single Epochs in any state
+                2) No transitions from Waking into REM
+            Does not affect any manually sorted epochs, unless Unfix Points
+            is clicked.
+            Therefore any points bounded by 2 points in a specific state
+            are marked as being a part of that state.
+            Furthermore, any REM points directly following a waking point
+            will be changed to waking unless the waking point is bounded on
+            both sides by REM points in which case it will become REM. 
+
+        Find EEG Artifacts
+        
+            Finds and marks epochs with artifacts in the EEG data. Does not 
+            affect any manually sorted epochs. 
+            This algorithm marks about 10% of epochs as artifacts. 
+            After using this algorithm, one should manually look through all
+            of the artifacts to ensure that there are no points marked as 
+            artifacts that shouldn’t be. 
+
+            This algorithms goes through each epoch removing 1 sec segments 
+            and recording how it changes the variance and the range. The 1 
+            sec segment that produces the maximum change is marked as the 
+            most likely location of an artifact if there is one in the epoch
+            and the max change in variance and max change in range are used 
+            to determine which points are most likely artifacts. 
+            The top 2.5% of epochs in the max change in range category, 
+            and the top 5% of epochs in the max change in variance category
+            are taken as artifacts. When looking at max change in variance 
+            the data is split into NREM and REM+waking because NREM epochs 
+            have a higher average variance and thus a higher average max 
+            change in variance. 
+            The top 5% is taken from each set as variance artifacts. 
+            
+            This algorithm works best after manually setting the threshold 
+            bars and simple sorting the data. The EEG threshold bar is the 
+            most important and only sorted points are looked at in this 
+            analysis. Unsorted points are ignored.  
+
+        Simple Sort
+        
+            This sorts the epochs using the location of the threshold bars. 
+            This overwrites all prior sorting. 
+                top left - waking
+                bottom right - NREM
+                bottom left - REM
+                top right - artifacts
+            Additionally, the continuity sort toggle becomes unselected. 
+
+        Auto Adjust Threshs
+        
+           This will apply a neural network sorting to all data that is not
+           marked as artifact or unsorted, and it will automatically set
+           the thresholds to best fit the neural network sorting. This
+           button works best if the 'Find EEG Artifacts' button is NOT used
+           beforehand. Instead, first manually mark extreme artifacts (i.e.
+           those artifacts that are in the top right quadrant or at the far
+           ends of the EMG and EEG Power axes) as either Artifacts or 
+           Unsorted and then click this button. 
+           
+           Once clicked, you will be asked whether you want the button to 
+           Set the Thresholds or to set the thresholds and apply its own 
+           sorting to the data. This 'Sort' option usually provides better
+           results since the thresholds are set based on this sorting anyway
+           and REM/Wake separation is less accurate when simply thresholding
+           on most data. Also, make sure that the 'Continuity Sort' is toggled
+           on to ensure best results. 
+            
+      ______________________________________________________________________
+
+    Bottom Histogram
+    
+        This shows the distribution of parameter 1. Adjusting the slider 
+        changes the x-scale of the main plot.
+      ______________________________________________________________________
+
+    Top Histogram
+    
+        This shows the distribution of parameter 2. Adjusting the slider 
+        changes the y-scale of the main plot.  
+      ______________________________________________________________________
+    
+    Navigation Box
+        
+        Point Selection Button
+        
+            This is a toggle button that when on allows the user to click on
+            a point in the main plot and have it become the currently 
+            focused point.
+
+        Epoch Set to Browse - drop down menu
+        
+            This allows the the user to select a specific subset to browse. 
+            The arrow buttons allow iterating through the chosen subset.
+            Subsets:
+                All - all epochs
+                
+                Waking - all waking points
+                
+                NREM - all NREM points
+                
+                REM - all REM points
+                
+                Artifacts - selects all artifact points (those marked as 
+                            Artifact or State w/ Artifact)
+                            
+                Unsorted - all points that are unsorted (Grey Epochs)
+                
+                Area - allows to look at all the points in a selected area. 
+                       Upon first use, you select an area.
+                Subsequently you can keep the same area or choose a new one. 
+
+                Border - this is a subset containing ~10% of epochs.
+                		5% are closest to the Parameter 1 threshold and
+                		5% are closest to the Wake/REM threshold. 
+
+        Prev and Next Buttons
+        
+            These make steps of 1 epoch. 
+
+        Export .xlsx Results
+        
+            Exports the data and state markings to an .xlsx file in the 
+            current directory. 
+            File -> Export -> Export Xls performs the same function but
+            allows choosing of target file to save to. 
+            This only functions on windows machines.
+            
+        Export .txt Results
+        
+            Allows you to choose the destination file. 
+            Export the data to a .txt file with tab separated variables.
+            File -> Export-> Export Txt does the same action.
+      ______________________________________________________________________
+
+    Change Epoch State Buttons
+    
+        These buttons change the current epoch to the selected state. If the
+        state change moves the epoch out of the current selected subset then
+        the next epoch in the subset is selected.
+        
+        When you use these buttons to manually change a point, the point
+        becomes 'Fixed' and thus will not change when the thresholds are
+        moved (either manually or automatically). To unfix points, the
+        'Unfix Points' button and the 'Simple Sort' button will both result
+        in all points becoming unfixed.
+      ______________________________________________________________________
+
+    Filtering Buttons
+        
+        Show Spectra
+        
+            Creates two pop-up plots. 
+            
+                One containing the average EEG frequency power spectra for 
+                each stage (Wake, NREM, REM and Artifacts)
+                The other containing the average EMG frequency power spectra
+                for each stage. 
+                Also notes what filtering has been done to the data.
+                
+                Upon pressing the button you will be asked if you would like
+                to see the mean spectra for each state or the cumulative
+                spectra. 
+
+         Filter Data
+         
+            This button allows high-pass and notch filtering of the either 
+            the EEG or EMG data.
+            Filters stack and current filtering is noted at the top of the 
+            EEG and EMG plots. 
+
+        Analyze EKG
+        
+            After selecting a epoch with a very noticeable EKG interference 
+            signal in the EMG, This determines which EMG points are most 
+            likely a result of EKG contamination and removes them from the 
+            EMG signal. 
+            This method is not very reliable since the EKG may vary over the
+            data set, and this may remove more information than just the EKG
+             
+            Currently it simply identifies points that are influenced by the
+            EKG and sets them equal to the mean, but this damages waveform 
+            data since the points removed are actually a superposition of 
+            EKG and EMG data. 
+
+        Restore Data
+        
+            Restores the raw EEG and EMG data that was initially loaded from
+            the .txt or .1eg file
+      ______________________________________________________________________
+
+    Other Buttons and Boxes
+
+
+        EEG Spectrum Checkbox
+        
+            Selecting this checkbox determines if the EEG Spectrum of the 
+            epoch is displayed.
+            If the box is selected but the Spectrum is not showing, simply 
+            uncheck and re-check the box and it should work. 
+
+        Epoch Duration
+        
+             At any point, changing the epoch duration will re-analyze the 
+             data with the smaller epoch size.
+
+        Epoch #:
+        
+            At any point, a valid epoch number can be typed here and the 
+            program will focus to that epoch.
+
+        Expanded View
+        
+            This opens a window that shows the EEG and EMG plots for the
+            current epoch as well as the epochs before and after.
+            A checkbox in this window allows you to toggle 3 epoch view 
+            or single epoch    view.
+            
+            This window supports browsing through epochs either one at a
+            time or as steps through a subset. 
+            Epoch States can also be changed within this window. 
+            
+            When this window is open, please close before using the main 
+            window as problems might arise. 
+            While the window is open you can still look at the main window 
+            as any action in this window will immediately reflect in the 
+            main window. 
+            However, any changes made in the main window will not reflect 
+            in the expanded view window unless closed and reopened. 
+
+		2-Step Sort
+			
+			This button opens a pop-up that allows you to set thresholds
+			in two steps. The top plot allows for separation of NREM from
+			the rest of the epochs. This plot shows EMG Power vs. 
+			EEG Power, and allows you to set a vertical threshold along
+			EEG Power. Points to the right of this threshold are marked
+			as NREM and points to the right are plotted on the plots
+			in red/green for Waking/REM separation. NREM points will show 
+			up on the plots in blue.  
+			
+			The second plot shows all the points with EEG Power on the
+			X-axis and (Theta Power ^2)/(Delta Power * EMG Power) on the Y-
+			axis. This means that waking epochs with the clumped at the
+			bottom-left of the plot while REM epochs are spread out above. 
+			You will be able to move a horizontal threshold bar along the 
+			Y-axis, and if you set this bar just above the main clump at the
+			bottom then the points above should be mostly REM. 
+			
+			Both plots are color coded to show which state each epoch is 
+			according to both thresholds. Red - Waking; Green - REM; and
+			Blue - NREM. Additionally, a continuity sort is always applied
+			so that epochs conform to the continuity rules. 
+			
+			When setting the REM/Wake Threshold it is better to err on the
+			side of more REM rather than less since the continuity rules
+			give priority to Waking and will catch some of the error in
+			setting the threshold. 
+			
+			This pop-up has a toggle button that says 'Import Sort'.
+			The button allows you to import the sorting from an .xlsx 
+			output file so that you can see how the thresholds should 
+			be set (for training purposes).
+			
+			When you click the 'Done' button or close the window, the
+			scoring from the pop-up is applied and the variables used in 
+			the second plot are put onto the main plot. Also the thresholds
+			are adjusted to match. The second horizontal threshold (defining
+			the upper bound of NREM) is simply set to the highest NREM point
+			and can be lowered if necessary. 
+			
+			Furthermore, There is a button that says 'Show Contours'. This
+			runs a clustering algorithm and displays contours lines for
+			Wake, NREM and REM clusters to help aid you in deciding where to
+			place the threshold bar. These contours only show up in the top
+			plot. The button is a toggle button so the contours can be 
+			easily removed and shown at will. When you first click the
+			button, you will be prompted to input weights for each of 4
+			variables. These weights correspond to the power that each
+			variable is raised to and this its impact on the clustering.
+			The variables used for clustering are Total EEG Power, Total
+			EMG Power, Delta Power and Theta Power. Afterwards, the
+			clustering will run and ask you if the clusters found are
+			acceptable. The graph you will be show to decide has all the
+			epochs in gray and the cluster core epochs in various colors.
+			If the clusters are not acceptable the clustering will run again
+			with a different K value until the clusters are good. Then you
+			will be asked to click of the best REM cluster (optional), the 
+			best waking cluster and the best NREM cluster. It will use the 
+			Core points you select to draw the contours. This algorithm
+			is not perfect but it does help visualize the data. Usually,
+			the NREM cluster will be far too large. Also this algorithm is
+			very time consuming. 
+			
+			Neural Network Sorting
+			
+				There are 2 buttons in the 2-step sort window pertaining to 
+				neural network sorting:
+				
+					- Auto Thresh
+						Uses neural networks to identify NREM and REM 
+						epochs, and then determines the best thresholds 
+						to separate out the epochs.
+						This button also enables the 'Auto Sort' toggle
+						button which displays the neural networks' 
+						sorting on the plots. 
+						
+					- Auto Sort
+						This is a toggle button that shows the neural 
+						network's sorting on both plots. If this is 
+						on when 'Done' is hit, then this sorting will
+						be applied instead of just the thresholds.						 
+						
+				To best use the neural network sorting, I recommend simply
+				clicking the Neural Net Thresh button and then setting the
+				REM threshold at the top of the dense red cluster in the 
+				bottom plot.  
+		
+		Validate Sorting
+		
+			This toggle button turns on Validation mode. Once sorting is
+			done this button should be used to manually validate the 
+			accuracy of the sorting. In this mode, all buttons that can be
+			used to alter the scoring are disabled or hidden and a new panel
+			appears. 
+			
+			The program allows you tho decide what percent of epochs to use
+			in the validation. It then asks you to confirm that these points 
+			are properly scored. Half of these points will be randomly chosen 
+			from the set of points near the threshold bars where points are 
+			most likely to be incorrect while the rest are randomly selected 
+			from the entire dataset. 
+			
+			Once you have, marked each point as correct or incorrect, this
+			mode will end and you will be told what percent of the points
+			you checked where correct, as well as the percent of border points
+			and the percent of non-border points that were scored properly.
+			This way you will know roughly how well the Auto Scoring performed 
+			and whether or not you should manually check the entire dataset. 
+			
+			Afterwords, you will be given the option to view and correctly
+			score all of the points that you marked as incorrect. 
+			
+      ______________________________________________________________________
+
+    Menus
+
+        File
+
+            Open
+            
+                You can now open a new file from within the program so there
+                is no need to exit out.
+                You can open all file types that you can open at start-up.
+
+            Save Workspace
+            
+                This will save the workspace of the current data, so that 
+                you can save your current sorting and continue later. The
+                file created by this will be quite large (~150MB for 6hrs
+                of data) so it is not recommended to create many of these. 
+
+            Export
+            
+                You can now export the results as a .xlsx file or as a .txt
+                file with tab separated variables that can be imported into
+                Microsoft Excel with ease. The results contain a column of
+                all of the epoch number, and a column noting what stage each
+                epoch is in:
+                    0 = Unsorted
+                    1 = Wake
+                    2 = NREM
+                    3 = REM
+                    4 = Wake w/ Artifact
+                    5 = NREM w/ Artifact
+                    6 = REM w/ Artifact
+                    7 = Uncategorized Artifact 
+                Further columns contain the total EEG Power within various
+                frequency bands. 
+                
+                The .xlsx export only works on Windows computers that have 
+                Microsoft Excel 2007 or later. 
+                .txt export works on all machines. 
+
+            Import Sorting
+          
+                This imports the sorting from an existing .xlsx output file
+                or from a .txt output file.
+                This is so that you can easily go back and look at how you 
+                sorted data previously or compare your sorting to another.
+                Also useful for training purposes.
+                
+        Tools
+        
+        	Find Spindles
+        	
+        		This runs an automatic spindle detection algorithm. 
+        		This algorithm bandpasses the raw EEG signal in the range
+        		10-13 Hz with a 200th order FIR filter. This signal is
+        		rectified, low-passed at 4 Hz, and multiplied by √2 to 
+        		obtain the signal envelope. An upper threshold is chosen
+        		as 3.5 times the mean of the signal envelope. Spindles are
+        		identified by points at which the envelope exceeds the 
+        		upper threshold. The endpoints of the spindles are the
+        		points nearest these maxima where the envelope crosses
+        		a lower threshold, which is set to the mean of the
+        		envelope minus .5 standard deviations. Additionally,
+        		the EEG power is computed for 2 sec epochs in the
+        		frequency range 10-13 Hz. Spindles are removed if they
+        		do not contain a 2 sec epochs whose EEG power is locally
+        		maximal. 
+        		
+        		This algorithm takes some time to run, but upon completion
+        		a display shows up with the bandpassed EEG signal and the 
+        		EEG power so that you can scroll through Spindles to see
+        		each one. Also a readout is displayed with the Spindle
+        		location, amplitude, duration, and peak frequency of each
+        		spindle. It also shows the scored state of the epoch that
+        		each spindle begins in. 
+        
+            Episode Analysis
+                
+                This breaks the data down into episodes of wake, NREM and 
+                REM. Episodes require at least 30 seconds (or 3 epochs) 
+                in a given state. Artifacts are counted as incursions
+                unless there are consecutive unsorted artifacts or the 
+                group of artifacts is of a different state than the
+                previous episode.
+                
+                This analysis displays every episode's state, the starting
+                epoch number, the length of the episode in epochs, the 
+                number of incursions (# of epochs not of the state within
+                the episode), and the mean delta power of the episode.
+                
+                Artifacts are ignored when computing mean delta power. 
+                
+                Additionally, the output will be displayed and can be saved
+                to a tab-separated text file with a 12 line header plus
+                one line of column titles. 
+
+			Compare Sort
+			
+				This will ask you for a .xlsx output file to compare the 
+				current sorting to. This produces a text output telling you
+				the accuracy of the current sorting in each state. The 
+				accuracy represents the percent of points in that state
+				that match the output file. 
+				
+				So, if you have 30 REM points and the output has 56 REM
+				points and all of your points are also marked as REM in the
+				output then the accuracy will be 100% for REM. 
+				
+			Save All
+			
+				This is mostly for debugging purposes. Selecting this will
+				generate and save an Episode Analysis Breakdown, a .txt
+				output file of the sorting, a .mat workspace and a compare
+				sort accuracy output. All of these will be saved to a
+				directory of your choice and you will be able to type in a
+				stem for the filename. 
+				
+				So if your filestem were Mouse6 AutoScore, this would create
+				the files:
+					Mouse6 AutoScore Breakdown.txt
+					Mouse6 AutoScore Sorted.txt
+					Mouse6 AutoScore Accuracy.txt
+					Mouse6 AutoScore Workspace.mat
+					
+				The workspace is optional as you will be asked whether you
+				want to save the workspace or not since these are rather
+				large (>100 MB). 
+				
+        Help
+    
+            Software Details
+        
+                Displays this file.  
+            

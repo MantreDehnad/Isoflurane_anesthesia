@@ -1,0 +1,52 @@
+Auto Score Usage
+
+I suggest using the program with a few files for which you already have the manually
+sorted output .xlsx. At all points you can import the sorting from the this xlsx and see
+where points are on the plot. 
+
+When you first run the Auto_Score program it will ask you to choose a file type. 
+After which you may choose the file to open.
+The program will take some time to load the file depending on file size. 
+If you use the program to save a .mat file (File -> Save Workspace) these can be opened
+very quickly, but the .mat files take up a lot of space (>100 MB). 
+
+Once open, you should set the thresholds such that epochs that are clearly artifacts
+(i.e. epochs is the top right quadrant) are black and all epochs you want included in
+auto sorting are colored. The you can simply press the button that says 
+'Auto Adjust Thresholds' at the bottom of the 'Sorting' box. This will run the data
+through 2 neural networks to determine the best thresholds. 
+
+When you press the button you will be asked whether you want to just set the thresholds
+or do you want to apply the neural network's sorting to all epochs. By clicking 'Sort' it
+will both set the best threshold and also keep the exact neural network sorting. 
+This option usually gives more accurate results since the thresholds alone are unable to 
+completely separate REM and Waking epochs. 
+
+After this, you can use the second button in the 'Sorting' Box, the 'Find EEG 
+Artifacts' button. This button will identify the epochs most likely to contain artifacts. 
+After this button is used you should always look through the artifacts to check for false 
+positives. 
+This is best accomplished by going to the 'Navigation' box and setting the drop-down menu to 
+'Artifacts' and using the associated arrow keys to navigate. 
+You can also use the 'Expanded View' Button at any time to get a larger view of the EEG and 
+EMG plots. 
+
+After this you can save your results to either a txt-file, an excel file or a .mat file. The
+ excel save only works on windows computers, and the .mat save produces a file that can only 
+be opened by this program. Saving a .mat file using the File->Save Workspace, is mostly for 
+use if you need to save your progress so you can come back to sorting later. You can also import 
+sorting from xlsx or txt output files but the .mat file also retains the filtered data (if 
+any filtering was applied), as well as your threshold positions.
+
+You can also go to Tools -> Episode Analysis to view the episodes of REM, NREM, and Waking,
+as well as various statistics such as average episode length, average delta power and 
+average theta power for each episode. 
+
+
+Another very useful button is the 'Show Spectra' button that is located next to the EEG 
+Frequency Spectrum plot in the top right. 
+This button will produce 2 plots to look at of the average Frequency Spectra of each group 
+(Wake, REM, NREM, Artifacts) for both the EEG and EMG spectra. 
+
+After sorting you can use Tools -> Find Spindles, in order to automatically find spindles
+in the EEG data and see the spindle counts for various states. 

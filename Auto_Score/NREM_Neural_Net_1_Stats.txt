@@ -1,0 +1,25 @@
+NREM Neural Network Connections List
+From	To	 Weight  	                  
+ A  	E 	 2.2401  	                  
+ B  	E 	 8.6434  	                  
+ C  	E 	 0.46714 	                  
+ D  	E 	 0.39475 	                  
+ A  	F 	-312.3305	                  
+ B  	F 	-44.1971 	                  
+ C  	F 	-230.4967	                  
+ D  	F 	-10.5898 	                  
+ A  	G 	-13.9388 	                  
+ B  	G 	-0.054073	                  
+ C  	G 	 24.3881 	                  
+ D  	G 	 1.1895  	                  
+ E  	I 	 2.7274  	                  
+ F  	I 	 -4.5693 	                  
+ G  	I 	 -8.9484 	                  
+ H  	I 	-0.94442 	                  
+ E  	J 	 -1.3357 	                  
+ F  	J 	 6.2177  	                  
+ G  	J 	 5.5578  	                  
+ H  	J 	 -0.1568 	                  
+ I  	L 	 7.0519  	                  
+ J  	L 	 -6.3227 	                  
+ K  	L 	-0.44261 	                  
